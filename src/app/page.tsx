@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { Canvas } from '@/components/clarity-canvas/canvas';
 import { Header } from '@/components/clarity-canvas/header';
 import { SidebarControls } from '@/components/clarity-canvas/sidebar-controls';
@@ -128,8 +128,8 @@ export default function Home() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-background">
-        <Sidebar variant="sidebar">
+      <div className="relative min-h-screen bg-background">
+        <Sidebar>
           <SidebarControls
             incognitoMode={incognitoMode}
             onToggleIncognito={handleToggleIncognito}

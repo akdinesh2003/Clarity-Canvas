@@ -26,8 +26,8 @@ Follow these instructions to get the project up and running on your local machin
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <repository-directory>
+    git clone https://github.com/akdinesh2003/Clarity-Canvas.git
+    cd Clarity-Canvas
     ```
 
 2.  **Install dependencies:**
@@ -64,4 +64,4 @@ Follow these instructions to get the project up and running on your local machin
 
 ## Author
 
-- **[YOUR NAME HERE]**: [YOUR LINK HERE]
+- **akdinesh2003**: [https://github.com/akdinesh2003](https://github.com/akdinesh2003)

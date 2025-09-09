@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { Textarea } from '@/components/ui/textarea';
 import { FeedbackPin, type Pin } from '@/components/clarity-canvas/feedback-pin';
 import { useToast } from '@/hooks/use-toast';
 
@@ -19,8 +18,9 @@ export function Canvas({ layoutContent, setLayoutContent, pins, setPins }: Canva
   const addPin = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canvasRef.current) return;
 
-    // Prevent adding pin on textarea
-    if (e.target instanceof HTMLTextAreaElement) {
+    // Prevent adding pin on interactive elements
+    const target = e.target as HTMLElement;
+    if (target.closest('a, button, input, textarea, [onclick]')) {
         return;
     }
 
@@ -53,16 +53,21 @@ export function Canvas({ layoutContent, setLayoutContent, pins, setPins }: Canva
   return (
     <div
       ref={canvasRef}
-      className="relative h-full w-full rounded-lg border-2 border-dashed bg-card shadow-inner cursor-copy"
+      className="relative h-full w-full rounded-lg border-2 border-dashed bg-card shadow-inner cursor-copy overflow-auto"
       onClick={addPin}
     >
-      <Textarea
-        placeholder="Start typing or generate a layout to test your ideas... Click anywhere on the canvas to add a feedback pin."
-        className="absolute inset-0 h-full w-full resize-none border-none bg-transparent p-6 text-base focus:ring-0 focus-visible:ring-0"
-        value={layoutContent}
-        onChange={(e) => setLayoutContent(e.target.value)}
-        onClick={(e) => e.stopPropagation()} // Prevent adding pin when clicking textarea
-      />
+      {layoutContent ? (
+        <div 
+            className="prose dark:prose-invert max-w-none p-6" 
+            dangerouslySetInnerHTML={{ __html: layoutContent }}
+            onClick={(e) => e.stopPropagation()}
+        />
+      ) : (
+         <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-muted-foreground">
+            <p>Start by generating a layout to test your ideas... Click anywhere on the canvas to add a feedback pin.</p>
+        </div>
+      )}
+
       {pins.map((pin) => (
         <FeedbackPin 
           key={pin.id} 

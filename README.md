@@ -2,8 +2,6 @@
 
 Clarity Canvas is an AI-powered prototyping tool that instantly transforms your ideas into web layouts and summarizes user feedback to accelerate your design process.
 
-![Clarity Canvas Screenshot](https://storage.googleapis.com/aip-dev-images/clarity-canvas-screenshot.png)
-
 ## Features
 
 - **AI Layout Generation**: Describe your desired layout in plain English, and watch as the AI generates responsive HTML with Tailwind CSS.
@@ -64,4 +62,4 @@ Follow these instructions to get the project up and running on your local machin
 
 ## Author
 
-- **akdinesh2003**: [https://github.com/akdinesh2003](https://github.com/akdinesh2003)
+- **akdinesh2003**  https://github.com/akdinesh2003

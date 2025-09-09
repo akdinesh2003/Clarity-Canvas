@@ -75,6 +75,7 @@ export function FeedbackPin({ pin, onUpdate, onRemove }: FeedbackPinProps) {
             setIsOpen(true);
           }}
           aria-label="Feedback Pin"
+          data-feedback-pin-ignore
         >
           <PinIcon className="h-6 w-6 drop-shadow-md" />
         </button>
@@ -95,6 +96,7 @@ export function FeedbackPin({ pin, onUpdate, onRemove }: FeedbackPinProps) {
                  setIsOpen(false);
             }
         }}
+        data-feedback-pin-ignore
       >
         <div className="grid gap-4">
           <div className="space-y-2">

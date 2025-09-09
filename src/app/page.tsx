@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import { Canvas } from '@/components/clarity-canvas/canvas';
 import { Header } from '@/components/clarity-canvas/header';
 import { SidebarControls } from '@/components/clarity-canvas/sidebar-controls';
@@ -128,35 +128,32 @@ export default function Home() {
 
   return (
     <SidebarProvider>
-      <div className="relative min-h-screen bg-background">
-        <Sidebar>
-          <SidebarControls
-            incognitoMode={incognitoMode}
-            onToggleIncognito={handleToggleIncognito}
-            onLock={() => setIsLocked(true)}
-            onClear={handleClear}
-            pins={pins}
-            setLayoutContent={setLayoutContent}
-            setHasUnsavedChanges={setHasUnsavedChanges}
-          />
-        </Sidebar>
-
-        <SidebarInset>
-          <div className="flex h-full flex-col">
-            <Header
-              isLocked={isLocked}
-              notifications={notifications}
+      <div className="flex h-screen w-full flex-col">
+        <Header
+          isLocked={isLocked}
+          notifications={notifications}
+        />
+        <div className="flex h-[calc(100vh-4rem)]">
+          <Sidebar>
+            <SidebarControls
+              incognitoMode={incognitoMode}
+              onToggleIncognito={handleToggleIncognito}
+              onLock={() => setIsLocked(true)}
+              onClear={handleClear}
+              pins={pins}
+              setLayoutContent={setLayoutContent}
+              setHasUnsavedChanges={setHasUnsavedChanges}
             />
-            <main className="flex-1 p-4 md:p-6">
+          </Sidebar>
+          <SidebarInset>
               <Canvas
                 layoutContent={layoutContent}
                 setLayoutContent={setLayoutContent}
                 pins={pins}
                 setPins={setPins}
               />
-            </main>
-          </div>
-        </SidebarInset>
+          </SidebarInset>
+        </div>
       </div>
 
       <LockScreen isLocked={isLocked} onUnlock={handleUnlock} />

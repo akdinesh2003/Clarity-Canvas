@@ -11,7 +11,7 @@ interface HeaderProps {
 
 export function Header({ isLocked, notifications }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center justify-between border-b bg-card px-4 md:px-6">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b bg-card px-4 md:px-6 z-20">
       <div className="flex items-center gap-4">
         <SidebarTrigger />
         <h1 className="text-xl font-bold font-headline">Clarity Canvas</h1>

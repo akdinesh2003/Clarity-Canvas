@@ -20,7 +20,7 @@ export function Canvas({ layoutContent, setLayoutContent, pins, setPins }: Canva
 
     // Prevent adding pin on interactive elements
     const target = e.target as HTMLElement;
-    if (target.closest('a, button, input, textarea, [onclick]')) {
+    if (target.closest('a, button, input, textarea, [onclick], [data-feedback-pin-ignore]')) {
         return;
     }
 
@@ -51,31 +51,33 @@ export function Canvas({ layoutContent, setLayoutContent, pins, setPins }: Canva
 
 
   return (
-    <div
-      ref={canvasRef}
-      className="relative h-full w-full rounded-lg border-2 border-dashed bg-card shadow-inner cursor-copy overflow-auto"
-      onClick={addPin}
-    >
-      {layoutContent ? (
-        <div 
-            className="prose dark:prose-invert max-w-none p-6" 
-            dangerouslySetInnerHTML={{ __html: layoutContent }}
-            onClick={(e) => e.stopPropagation()}
-        />
-      ) : (
-         <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-muted-foreground">
-            <p>Start by generating a layout to test your ideas... Click anywhere on the canvas to add a feedback pin.</p>
-        </div>
-      )}
+    <div className="relative h-full w-full p-4 md:p-6">
+        <div
+            ref={canvasRef}
+            className="relative h-full w-full rounded-lg border-2 border-dashed bg-card shadow-inner cursor-copy overflow-auto"
+            onClick={addPin}
+        >
+            {layoutContent ? (
+                <div 
+                    className="prose dark:prose-invert max-w-none p-6" 
+                    dangerouslySetInnerHTML={{ __html: layoutContent }}
+                    onClick={(e) => e.stopPropagation()}
+                />
+            ) : (
+                <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-muted-foreground">
+                    <p>Start by generating a layout to test your ideas... Click anywhere on the canvas to add a feedback pin.</p>
+                </div>
+            )}
 
-      {pins.map((pin) => (
-        <FeedbackPin 
-          key={pin.id} 
-          pin={pin} 
-          onUpdate={updatePinFeedback}
-          onRemove={removePin}
-        />
-      ))}
+            {pins.map((pin) => (
+                <FeedbackPin 
+                    key={pin.id} 
+                    pin={pin} 
+                    onUpdate={updatePinFeedback}
+                    onRemove={removePin}
+                />
+            ))}
+        </div>
     </div>
   );
 }
